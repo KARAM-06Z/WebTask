@@ -1,0 +1,39 @@
+:root{
+  --main-color : #c53e6c;
+  --side-color : #ffffff;
+  --minor-color : #808080;
+}
+
+@font-face {
+  font-family: inter;
+  src: url(./assets/fonts/inter/inter.ttf) format("opentype");
+}
+
+*{
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+  font-family: inter;
+  font-size: 16px;
+  background-color: transparent;
+  border: none;
+}
+
+button{
+  cursor: pointer;
+}
+
+body{
+  height: 100vh;
+  min-height: auto;
+}
+
+.body_no_scroll{
+  overflow: hidden;
+}
+
+@media only screen and (max-width: 512px) {
+  *{
+    font-size: 14px;
+  }
+}

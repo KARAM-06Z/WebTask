@@ -1,0 +1,27 @@
+<h3 class="reg_header">Sign up</h3>
+
+<form (submit)= "submitUser()">
+  <div class="input_wrapper">
+    <label for="email_input">Email adress</label>
+    <input type="email" name="email" class="reg_input" id="email_input" [(ngModel)]= "email" maxlength="30">
+    <span class="input_error" *ngIf="email_error">{{ email_error_text }}</span>
+  </div>
+
+  <div class="input_wrapper">
+    <label for="password_input">Password</label>
+    <input type="password" name="password" class="reg_input" id="password_input" [(ngModel)]= "password" maxlength="15">
+    <span class="input_error" *ngIf="password_error">{{ password_error_text }}</span>
+  </div>
+
+  <div class="input_wrapper">
+    <label for="repeat_password_input">Repeat password</label>
+    <input type="password" name="repeat_password" class="reg_input" id="repeat_password_input" [(ngModel)]= "repeat_password" maxlength="15">
+    <span class="input_error" *ngIf="repeat_password_error">{{ repeat_password_error_text }}</span>
+  </div>
+
+  <button type="submit" class="reg_submit">Proceed</button>
+</form>
+
+<div class="reg_anchors_wrapper">
+  <span href="" class="anchor">Have an account? <a href="">Sign in</a></span>
+</div>

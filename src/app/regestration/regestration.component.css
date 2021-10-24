@@ -1,0 +1,81 @@
+.regestration_main{
+  width: 100%;
+  height: 100vh;
+  min-height: auto;
+}
+
+.regestration_content{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 790px;
+  height: 100vh;
+  min-height: 750px;
+  background-image: url("../../assets/images/reg_BCK.PNG");
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.regestration_form{
+  width: 50%;
+  background-color: var(--side-color);
+  padding: 16px;
+  border-radius: 7px;
+  margin: 2rem 0px;
+}
+
+.reg_links{
+  text-align: center;
+}
+
+.reg_links_anchors{
+  margin-top: 8px;
+}
+
+.reg_links_anchors a{
+  display: block;
+  color: var(--main-color);
+  text-decoration: none;
+  font-size: 14px;
+  margin: 4px 0px;
+}
+
+.reg_links_anchors a:hover{
+  text-decoration: underline;
+}
+
+
+@media only screen and (max-width: 1024px) {
+  .regestration_content{
+    width: 100%;
+    background-image: none;
+  }
+
+  .regestration_form{
+    width: 60%;
+  }
+}
+
+@media only screen and (max-width: 812px) {
+  .regestration_form{
+    width: 70%;
+  }
+}
+
+@media only screen and (max-width: 512px) {
+  .regestration_content{
+    min-height: 560px;
+  }
+
+  .regestration_form{
+    width: 98%;
+    padding: 16px 4px;
+  }
+
+  .form_logo img{
+    width: 66px;
+    height: 41px;
+  }
+}

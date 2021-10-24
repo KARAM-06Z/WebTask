@@ -1,0 +1,326 @@
+.header{
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px #eeeeee solid;
+}
+
+.header_left_content,.header_right_content,.header_mid_content{
+  display: flex;
+  align-items: center;
+}
+
+.header_mid_content{
+  flex: 1;
+  justify-content: center;
+}
+
+.apps_button{
+  background-color: #b60000;
+  padding: 24px;
+}
+
+.apps_button svg{
+  display: block;
+  stroke: var(--side-color);
+  width: 24px;
+  height: 24px;
+}
+
+.options_button{
+  padding: 24px;
+}
+
+.options_button svg{
+  display: block;
+  fill: var(--minor-color);
+  width: 24px;
+  height: 24px;
+}
+
+.site_name span{
+  display: block;
+}
+
+.site_name span:nth-child(1){
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.site_name span:nth-child(2){
+  font-size: 14px;
+  color: #b60000;
+}
+
+.page_controls , .account_controls, .devider{
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.page_controls button{
+  margin: 18px;
+  width: 24px;
+  height: 24px;
+}
+
+.page_controls button svg{
+  display: block;
+  fill: var(--minor-color);
+  width: 24px;
+  height: 24px;
+}
+
+.devider{
+  width: 1px;
+  height: 18px;
+  margin: 18px;
+  background-color: var(--minor-color);
+}
+
+.account_controls button{
+  display: block;
+  position: relative;
+  margin: 0px 18px;
+}
+
+.account_controls button svg{
+  display: block;
+  stroke: var(--minor-color);
+}
+
+.notification_count{
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  background-color: #b60000;
+  border-radius: 50px;
+  width: 18px;
+  height: 18px;
+}
+
+.notification_count span{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  color: var(--side-color);
+  font-size: 12px;
+}
+
+.account_controls button img{
+  border-radius: 50px;
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+}
+
+.search_wrraper{
+  display: flex;
+  align-items: center;
+  background-color: #eeeeee;
+  border-radius: 4px;
+  width: 520px;
+  overflow: hidden;
+}
+
+.search_wrraper svg{
+  display: block;
+  fill: var(--minor-color);
+  width: 24px;
+  height: 24px;
+  margin: 0px 12px;
+}
+
+.search_wrraper input{
+  outline: none;
+  flex: 1;
+}
+
+.search_wrraper input::placeholder{
+  color: var(--minor-color);
+}
+
+.search_wrraper button{
+  display: flex;
+  align-items: center;
+  margin-left: 12px;
+  color: var(--minor-color);
+  padding: 12px;
+  background-color: #e6e6e6;
+  font-size: 12px;
+}
+
+.search_wrraper button span{
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+
+.search_wrraper button span svg{
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 16px;
+  height: 16px;
+  margin: 0px;
+}
+
+.drop_down{
+  width: 240px;
+  position: absolute;
+  right: 0%;
+  top: 100%;
+  background-color: #ffffff;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 8;
+  border: 1px #eeeeee solid;
+  border-radius: 3px;
+}
+
+.drop_down_option,.mobile_drop_down_option{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  text-align: left;
+  padding: 12px 12px;
+  border-bottom: 1px #eeeeee solid;
+  color: var(--minor-color);
+}
+
+.mobile_drop_down_option{
+  display: none;
+}
+
+.drop_down_option:last-child{
+  border-bottom: none;
+}
+
+.drop_down_option:hover{
+  text-decoration: underline;
+}
+
+.drop_down_option svg ,.mobile_drop_down_option svg{
+  width: 24px;
+  height: 24px;
+  fill: var(--minor-color);
+}
+
+
+.dropdown_content{
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+}
+
+.header_dropdown{
+  display: none;
+}
+
+.header_dropdown svg{
+  width: 18px;
+  height: 18px;
+  fill: var(--minor-color);
+  display: block;
+}
+
+@media only screen and (max-width: 1260px) {
+  .search_wrraper{
+    width: 380px;
+  }
+}
+
+
+@media only screen and (max-width: 1024px) {
+  .header_left_content button{
+    padding: 14px;
+  }
+
+  .site_name span:nth-child(1){
+    font-size: 16px;
+  }
+
+  .site_name span:nth-child(2){
+    font-size: 12px;
+  }
+
+  .header_dropdown{
+    display: block;
+    padding: 14px;
+  }
+
+  .dropdown_content{
+    display: block;
+    position: absolute;
+    width: 100%;
+    top: -300%;
+    left: 0%;
+    z-index: 8;
+    border-bottom: 1px #eeeeee solid;
+  }
+
+  .search_wrraper{
+    width: 100%;
+    border-radius: 0px;
+  }
+
+  .drop_down{
+    display: none;
+  }
+
+  .mobile_drop_down_option{
+    display: flex;
+    width: 90px;
+    margin-left: auto;
+    border-bottom: none;
+    padding: 4px 9px;
+    font-size: 12px;
+  }
+
+  .devider{
+    display: none;
+  }
+
+  .header_right_content{
+    justify-content: space-between;
+  }
+
+  .search_wrraper button{
+    padding: 6px;
+  }
+
+  .account_controls button img{
+    width: 32px;
+    height: 32px;
+  }
+
+  .page_controls button , .account_controls button{
+    margin: 9px;
+  }
+
+  .page_controls button , .account_controls button:nth-child(1){
+    width: 18px;
+    height: 18px;
+  }
+
+  .header_left_content button svg , .search_wrraper button span , .search_wrraper svg , .page_controls button svg , .account_controls button svg ,  .mobile_drop_down_option svg{
+    width: 18px;
+    height: 18px;
+  }
+
+  .search_wrraper button span svg{
+    width: 12px;
+    height: 12px;
+  }
+
+  .notification_count{
+    width: 14px;
+    height: 14px;
+  }
+}

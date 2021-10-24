@@ -1,0 +1,360 @@
+<div class="tabledata_wrapper" *ngIf="view_table">
+  <div class="pop_ups" *ngIf="pop_up">
+    <div class="device_form" id="create_form" *ngIf="create_form">
+      <button class="close" (click)="close_create()">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 492 492" style="enable-background:new 0 0 492 492;" xml:space="preserve">
+          <g>
+            <g>
+              <path d="M300.188,246L484.14,62.04c5.06-5.064,7.852-11.82,7.86-19.024c0-7.208-2.792-13.972-7.86-19.028L468.02,7.872    c-5.068-5.076-11.824-7.856-19.036-7.856c-7.2,0-13.956,2.78-19.024,7.856L246.008,191.82L62.048,7.872    c-5.06-5.076-11.82-7.856-19.028-7.856c-7.2,0-13.96,2.78-19.02,7.856L7.872,23.988c-10.496,10.496-10.496,27.568,0,38.052    L191.828,246L7.872,429.952c-5.064,5.072-7.852,11.828-7.852,19.032c0,7.204,2.788,13.96,7.852,19.028l16.124,16.116    c5.06,5.072,11.824,7.856,19.02,7.856c7.208,0,13.968-2.784,19.028-7.856l183.96-183.952l183.952,183.952    c5.068,5.072,11.824,7.856,19.024,7.856h0.008c7.204,0,13.96-2.784,19.028-7.856l16.12-16.116    c5.06-5.064,7.852-11.824,7.852-19.028c0-7.204-2.792-13.96-7.852-19.028L300.188,246z"/>
+            </g>
+          </g>
+        </svg>
+      </button>
+
+      <h3 class="pop_up_form_header">Add device</h3>
+
+      <form (submit) = "create_device()">
+        <div class="input_wrapper">
+          <label for="number">Device number</label>
+          <input type="text" id="number" name="number" class="device_input" [(ngModel)]= "Device_number" maxlength="15">
+        </div>
+
+        <div class="input_wrapper">
+          <label for="name">Device name</label>
+          <input type="text" id="name" name="name" class="device_input" [(ngModel)]= "Device_name" maxlength="15">
+        </div>
+
+        <div class="input_wrapper">
+          <label for="latitude">Device latitude</label>
+          <input type="text" id="latitude" name="latitude" class="device_input" [(ngModel)]= "Device_latitude" maxlength="11">
+        </div>
+
+        <div class="input_wrapper">
+          <label for="longitude">Device longitude</label>
+          <input type="text" id="longitude" name="longitude" class="device_input" [(ngModel)]= "Device_longitude" maxlength="11">
+        </div>
+
+        <div class="input_error" *ngIf="error">{{ error_text }}</div>
+
+        <button type="submit" class="device_submit">Proceed</button>
+      </form>
+    </div>
+
+    <div class="device_form" id="delete_form" *ngIf="delete_form">
+      <button class="close" (click)="close_delete()">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 492 492" style="enable-background:new 0 0 492 492;" xml:space="preserve">
+          <g>
+            <g>
+              <path d="M300.188,246L484.14,62.04c5.06-5.064,7.852-11.82,7.86-19.024c0-7.208-2.792-13.972-7.86-19.028L468.02,7.872    c-5.068-5.076-11.824-7.856-19.036-7.856c-7.2,0-13.956,2.78-19.024,7.856L246.008,191.82L62.048,7.872    c-5.06-5.076-11.82-7.856-19.028-7.856c-7.2,0-13.96,2.78-19.02,7.856L7.872,23.988c-10.496,10.496-10.496,27.568,0,38.052    L191.828,246L7.872,429.952c-5.064,5.072-7.852,11.828-7.852,19.032c0,7.204,2.788,13.96,7.852,19.028l16.124,16.116    c5.06,5.072,11.824,7.856,19.02,7.856c7.208,0,13.968-2.784,19.028-7.856l183.96-183.952l183.952,183.952    c5.068,5.072,11.824,7.856,19.024,7.856h0.008c7.204,0,13.96-2.784,19.028-7.856l16.12-16.116    c5.06-5.064,7.852-11.824,7.852-19.028c0-7.204-2.792-13.96-7.852-19.028L300.188,246z"/>
+            </g>
+          </g>
+        </svg>
+      </button>
+
+      <h3 class="pop_up_form_header">Delete devices</h3>
+      <p>Confirm delete {{get_checkboxes_length()}} device<span *ngIf="checkboxes.length > 1">s</span>?</p>
+
+      <form (submit) = "delete_device()">
+        <button type="submit" class="device_submit">Confirm</button>
+      </form>
+    </div>
+
+    <div class="device_form" id="edit_form" *ngIf="edit_form">
+      <button class="close" (click)="close_edit()">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 492 492" style="enable-background:new 0 0 492 492;" xml:space="preserve">
+          <g>
+            <g>
+              <path d="M300.188,246L484.14,62.04c5.06-5.064,7.852-11.82,7.86-19.024c0-7.208-2.792-13.972-7.86-19.028L468.02,7.872    c-5.068-5.076-11.824-7.856-19.036-7.856c-7.2,0-13.956,2.78-19.024,7.856L246.008,191.82L62.048,7.872    c-5.06-5.076-11.82-7.856-19.028-7.856c-7.2,0-13.96,2.78-19.02,7.856L7.872,23.988c-10.496,10.496-10.496,27.568,0,38.052    L191.828,246L7.872,429.952c-5.064,5.072-7.852,11.828-7.852,19.032c0,7.204,2.788,13.96,7.852,19.028l16.124,16.116    c5.06,5.072,11.824,7.856,19.02,7.856c7.208,0,13.968-2.784,19.028-7.856l183.96-183.952l183.952,183.952    c5.068,5.072,11.824,7.856,19.024,7.856h0.008c7.204,0,13.96-2.784,19.028-7.856l16.12-16.116    c5.06-5.064,7.852-11.824,7.852-19.028c0-7.204-2.792-13.96-7.852-19.028L300.188,246z"/>
+            </g>
+          </g>
+        </svg>
+      </button>
+
+      <h3 class="pop_up_form_header">Edit device</h3>
+
+      <form (submit)="edit_device()">
+        <div class="input_wrapper">
+          <label for="number">Device number</label>
+          <input type="text" id="number" name="number" class="device_input" [(ngModel)]= "Device_number" maxlength="15">
+          <span class="input_error"></span>
+        </div>
+
+        <div class="input_wrapper">
+          <label for="name">Device name</label>
+          <input type="text" id="name" name="name" class="device_input" [(ngModel)]= "Device_name" maxlength="15">
+          <span class="input_error"></span>
+        </div>
+
+        <div class="input_wrapper">
+          <label for="latitude">Device latitude</label>
+          <input type="text" id="latitude" name="latitude" class="device_input" [(ngModel)]= "Device_latitude" maxlength="11">
+          <span class="input_error"></span>
+        </div>
+
+        <div class="input_wrapper">
+          <label for="longitude">Device longitude</label>
+          <input type="text" id="longitude" name="longitude" class="device_input" [(ngModel)]= "Device_longitude" maxlength="11">
+          <span class="input_error"></span>
+        </div>
+
+        <div class="input_error" *ngIf="error">{{ error_text }}</div>
+        <button type="submit" class="device_submit">Proceed</button>
+      </form>
+    </div>
+  </div>
+
+
+  <div class="table_header">
+    <div class="table_data_info_wrapper">
+      Displaying {{ ViewCount }} of {{ AllDevicesCount }} Solutions
+    </div>
+
+    <div class="table_controls">
+      <div class="table_left_controls">
+        <button *ngIf="checkboxes.length > 0" (click)="open_delete()" id="delete_devices_button">
+          <svg id="Layer_1" style="enable-background:new 0 0 24 24;" version="1.1" viewBox="0 0 24 24" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <path class="st0" d="M18,22H6V8H4v13.7C4,22.8,4.9,24,6,24h12c1.1,0,2-1.2,2-2.3V8h-2V22z M15,4V2H9v2H2v2h20V4H15z M9,10v10h2V10H9  z M13,10v10h2V10H13z"/>
+          </svg>
+        </button>
+
+        <button (click)="open_create()" *ngIf="!Searching" id="create_devices_button">
+          <svg width="322" height="322" viewBox="0 0 322 322" xmlns="http://www.w3.org/2000/svg">
+            <rect x="171.263" width="321.605" height="21.2632" rx="4" transform="rotate(90 171.263 0)"/>
+            <rect y="150" width="321.605" height="21.2632" rx="4"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="table_mid_controls">
+          <button>
+            <svg width="322" height="300" viewBox="0 0 322 300"  xmlns="http://www.w3.org/2000/svg">
+              <rect x="62" y="49" width="260" height="21" rx="7" />
+              <rect x="62" y="139" width="260" height="22" rx="7"/>
+              <rect x="62" y="230" width="260" height="21" rx="7" />
+              <rect y="49" width="21" height="21" rx="10.5" />
+              <rect y="140" width="21" height="21" rx="10.5" />
+              <rect y="230" width="21" height="21" rx="10.5" />
+              </svg>
+          </button>
+
+          <button>
+            <svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+              <rect width="14" height="300"/>
+              <rect x="286" width="14" height="300"/>
+              <rect x="55" width="14" height="300"/>
+              <rect x="300" y="286" width="14" height="300" transform="rotate(90 300 286)"/>
+              <rect x="300" width="14" height="300" transform="rotate(90 300 0)"/>
+            </svg>
+          </button>
+
+          <button>
+            <svg width="334" height="346" viewBox="0 0 334 346" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="6" y="6.68018" width="130.358" height="135.679" rx="5" stroke-width="24"/>
+              <rect x="6" y="203.64" width="130.358" height="135.679" rx="5" stroke-width="24"/>
+              <rect x="197.64" y="203.64" width="130.358" height="135.679" rx="5" stroke-width="24"/>
+              <rect x="197.64" y="6.68018" width="130.358" height="135.679" rx="5" stroke-width="24"/>
+            </svg>
+          </button>
+
+          <button (click)="open_map()" id="map_button">
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;" xml:space="preserve">
+              <g>
+                <g>
+                  <rect x="374.743" y="237.919" width="137.258" height="127.851"/>
+                </g>
+              </g>
+              <g>
+                <g>
+                  <path d="M0,410.628v76.139C0,500.703,11.297,512,25.233,512H329.88V410.626C326.374,410.628,4.426,410.628,0,410.628z"/>
+                </g>
+              </g>
+              <g>
+                <g>
+                  <path d="M374.74,410.629v101.372h112.027c13.935,0,25.233-11.297,25.233-25.233v-76.139H374.74z"/>
+                </g>
+              </g>
+              <g>
+                <g>
+                  <path d="M512,25.235c0-13.937-11.297-25.234-25.233-25.234H25.233C11.297,0.001,0,11.298,0,25.235v48.554h31.417    c-7.773,13.876-13.017,29.019-15.501,44.859H0v247.12h61.123V264.272c18.404,32.789,41.526,68.819,44.859,73.249v28.247H329.88    V215.489c0-12.388,10.042-22.43,22.43-22.43H512v-74.412H283.991c-2.484-15.84-7.728-30.984-15.501-44.859H512V25.235z     M167.925,316.05c-8.435,12.969-27.463,13.034-35.948-0.013C102.686,271.005,47.9,181.253,47.9,139.956    c0-56.363,45.691-102.055,102.055-102.055c56.364,0,102.055,45.691,102.055,102.055    C252.01,181.257,197.214,271.023,167.925,316.05z"/>
+                </g>
+              </g>
+              <g>
+                <g>
+                  <circle cx="149.959" cy="138.833" r="42.621"/>
+                </g>
+              </g>
+            </svg>
+          </button>
+      </div>
+
+      <div class="table_right_controls">
+        <button>
+          <svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+            <path d="M171.058 158.75L277.506 18.75H22.0313L129.732 158.75C132.236 162.5 133.489 166.25 133.489 170V297.818L123.47 300C118.461 300 114.704 296.25 114.704 291.25V171.25L3.2464 23.75C-4.26757 13.75 1.99408 0 14.5174 0H285.02C297.544 0 303.805 13.75 297.544 23.75L186.086 171.25V275C186.086 278.75 183.582 282.5 179.825 283.75L167.301 287.455V170C167.301 166.25 168.554 162.5 171.058 158.75Z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="table_wrapper">
+    <table *ngIf = "Devices.length > 0">
+      <tr>
+        <td>
+          <div class="custom_checkbox_wrapper">
+            <input type="checkbox" name="check_device" id="main_checkbox" [checked]="main_all_checked" (change)="selectAllCheckboxes($event)">
+            <label for="main_checkbox" class="custom_checkbox">
+              <svg data-name='Layer 2' id='ab1c9fc2-0428-4abb-94c8-3c85cce73c4d' viewBox='0 0 38 38' xmlns='http://www.w3.org/2000/svg'>
+                <rect height='2.5' rx='1.25' transform='translate(-7.27 20.449) rotate(-45)' width='13.08' x='14.509' y='17.75'/>
+                <rect height='2.5' rx='1.25' transform='translate(11.395 46.123) rotate(-135)' width='8.267' x='11.116' y='19.451'/>
+              </svg>
+            </label>
+          </div>
+        </td>
+        <th>
+          <input type="checkbox" id="Device_id_sort_check" [checked]="id_sort_check" (change)="SortBy($event)" value="id">
+          <label for="Device_id_sort_check" class="sort_arrows">
+            <span>Device ID</span>
+            <svg width="300" height="301" viewBox="0 0 300 301" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M38 198.001H262L150 300.001L38 198.001Z" />
+              <path d="M262 102.001L38 102.001L150 0.000989198L262 102.001Z" />
+            </svg>
+          </label>
+        </th>
+        <th>
+          <input type="checkbox" id="Device_number_sort_check" [checked]="number_sort_check" (change)="SortBy($event)" value="number">
+          <label for="Device_number_sort_check" class="sort_arrows">
+            <span>Device number</span>
+            <svg width="300" height="301" viewBox="0 0 300 301" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M38 198.001H262L150 300.001L38 198.001Z" />
+              <path d="M262 102.001L38 102.001L150 0.000989198L262 102.001Z" />
+            </svg>
+          </label>
+        </th>
+        <th>
+          <input type="checkbox" id="Device_name_sort_check" [checked]="name_sort_check" (change)="SortBy($event)" value="name">
+          <label for="Device_name_sort_check" class="sort_arrows">
+            <span>Device name</span>
+            <svg width="300" height="301" viewBox="0 0 300 301" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M38 198.001H262L150 300.001L38 198.001Z" />
+              <path d="M262 102.001L38 102.001L150 0.000989198L262 102.001Z" />
+            </svg>
+          </label>
+        </th>
+        <th><label><span>Device latitude</span></label></th>
+        <th><label><span>Device longitude</span></label></th>
+        <th><label><span>Created at</span></label></th>
+      </tr>
+
+      <tr *ngFor="let device of Devices ; index as i;">
+        <td>
+          <div class="custom_checkbox_wrapper">
+            <input type="checkbox" name="check_device" value="{{i}}" id="CB{{i}}" class="row_checkbox" (change)="selectCheckbox($event)" [checked]="All_checked">
+            <label for="CB{{i}}" class="custom_checkbox">
+              <svg data-name='Layer 2' id='ab1c9fc2-0428-4abb-94c8-3c85cce73c4d' viewBox='0 0 38 38' xmlns='http://www.w3.org/2000/svg'>
+                <rect height='2.5' rx='1.25' transform='translate(-7.27 20.449) rotate(-45)' width='13.08' x='14.509' y='17.75'/>
+                <rect height='2.5' rx='1.25' transform='translate(11.395 46.123) rotate(-135)' width='8.267' x='11.116' y='19.451'/>
+              </svg>
+            </label>
+          </div>
+        </td>
+
+        <td>{{device.id}}</td>
+        <td>{{device.number}}</td>
+        <td>{{device.name}}</td>
+        <td>{{device.latitude}}</td>
+        <td>{{device.longitude}}</td>
+        <td>{{device.created_at}}</td>
+        <td>
+          <button class="device_edit_button" value="{{i}}" (click)="open_edit($event)">
+            <svg id="Layer_1" style="enable-background:new 0 0 24 24;" version="1.1" viewBox="0 0 24 24" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <path d="M19.607,18.746c0,0.881-0.716,1.624-1.597,1.624H5.231c-0.881,0-1.597-0.743-1.597-1.624V5.967  c0-0.881,0.716-1.571,1.597-1.571h7.454V3.332H5.231c-1.468,0-2.662,1.168-2.662,2.636v12.778c0,1.468,1.194,2.688,2.662,2.688  h12.778c1.468,0,2.662-1.221,2.662-2.688v-7.428h-1.065V18.746z"/>
+              <path d="M20.807,3.17c-0.804-0.805-2.207-0.805-3.012,0l-7.143,7.143c-0.068,0.068-0.117,0.154-0.14,0.247L9.76,13.571  c-0.045,0.181,0.008,0.373,0.14,0.506c0.101,0.101,0.237,0.156,0.376,0.156c0.043,0,0.086-0.005,0.129-0.016l3.012-0.753  c0.094-0.023,0.179-0.072,0.247-0.14l7.143-7.143c0.402-0.402,0.624-0.937,0.624-1.506S21.21,3.572,20.807,3.17z M13.016,12.467  l-2.008,0.502l0.502-2.008l5.909-5.909l1.506,1.506L13.016,12.467z M20.054,5.428l-0.376,0.376l-1.506-1.506l0.376-0.376  c0.402-0.402,1.104-0.402,1.506,0c0.201,0.201,0.312,0.468,0.312,0.753C20.366,4.96,20.255,5.227,20.054,5.428z"/>
+            </svg>
+          </button>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+
+
+
+
+  <div class="empty_table_alert" *ngIf = "Devices.length == 0">
+    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="12" r="10"/>
+      <line x1="12" x2="12" y1="8" y2="12"/>
+      <line x1="12" x2="12" y1="16" y2="16"/>
+    </svg>
+
+    <p>Nothing is here</p>
+  </div>
+</div>
+
+
+<div *ngIf="view_map" class="map_wrapper">
+  <div class="map_controls">
+    <button>
+      <svg width="322" height="300" viewBox="0 0 322 300"  xmlns="http://www.w3.org/2000/svg">
+        <rect x="62" y="49" width="260" height="21" rx="7" />
+        <rect x="62" y="139" width="260" height="22" rx="7"/>
+        <rect x="62" y="230" width="260" height="21" rx="7" />
+        <rect y="49" width="21" height="21" rx="10.5" />
+        <rect y="140" width="21" height="21" rx="10.5" />
+        <rect y="230" width="21" height="21" rx="10.5" />
+        </svg>
+    </button>
+
+    <button>
+      <svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+        <rect width="14" height="300"/>
+        <rect x="286" width="14" height="300"/>
+        <rect x="55" width="14" height="300"/>
+        <rect x="300" y="286" width="14" height="300" transform="rotate(90 300 286)"/>
+        <rect x="300" width="14" height="300" transform="rotate(90 300 0)"/>
+      </svg>
+    </button>
+
+    <button>
+      <svg width="334" height="346" viewBox="0 0 334 346" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="6" y="6.68018" width="130.358" height="135.679" rx="5" stroke-width="24"/>
+        <rect x="6" y="203.64" width="130.358" height="135.679" rx="5" stroke-width="24"/>
+        <rect x="197.64" y="203.64" width="130.358" height="135.679" rx="5" stroke-width="24"/>
+        <rect x="197.64" y="6.68018" width="130.358" height="135.679" rx="5" stroke-width="24"/>
+      </svg>
+    </button>
+
+    <button (click)="close_map()" id="map_button">
+      <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001; fill: #c53e6c;" xml:space="preserve">
+        <g>
+          <g>
+            <rect x="374.743" y="237.919" width="137.258" height="127.851"/>
+          </g>
+        </g>
+        <g>
+          <g>
+            <path d="M0,410.628v76.139C0,500.703,11.297,512,25.233,512H329.88V410.626C326.374,410.628,4.426,410.628,0,410.628z"/>
+          </g>
+        </g>
+        <g>
+          <g>
+            <path d="M374.74,410.629v101.372h112.027c13.935,0,25.233-11.297,25.233-25.233v-76.139H374.74z"/>
+          </g>
+        </g>
+        <g>
+          <g>
+            <path d="M512,25.235c0-13.937-11.297-25.234-25.233-25.234H25.233C11.297,0.001,0,11.298,0,25.235v48.554h31.417    c-7.773,13.876-13.017,29.019-15.501,44.859H0v247.12h61.123V264.272c18.404,32.789,41.526,68.819,44.859,73.249v28.247H329.88    V215.489c0-12.388,10.042-22.43,22.43-22.43H512v-74.412H283.991c-2.484-15.84-7.728-30.984-15.501-44.859H512V25.235z     M167.925,316.05c-8.435,12.969-27.463,13.034-35.948-0.013C102.686,271.005,47.9,181.253,47.9,139.956    c0-56.363,45.691-102.055,102.055-102.055c56.364,0,102.055,45.691,102.055,102.055    C252.01,181.257,197.214,271.023,167.925,316.05z"/>
+          </g>
+        </g>
+        <g>
+          <g>
+            <circle cx="149.959" cy="138.833" r="42.621"/>
+          </g>
+        </g>
+      </svg>
+    </button>
+  </div>
+  <div id="map">
+  </div>
+</div>

@@ -1,0 +1,81 @@
+.reg_header{
+  font-size: 18px;
+}
+
+.input_wrapper{
+  margin: 2.5rem 0px;
+}
+
+label{
+  display: block;
+  font-size: 12px;
+  color: var(--minor-color);
+  margin: 0px 0px 1rem 1.5rem;
+}
+
+label::after{
+  content: "*";
+}
+
+.reg_input{
+  width: 100%;
+  border-radius: 4px;
+  border: 1px var(--minor-color) solid;
+  padding: 9px;
+  outline: none;
+}
+
+.reg_submit{
+  width: 100%;
+  padding: 12px;
+  background-color: var(--main-color);
+  color: var(--side-color);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.reg_anchors_wrapper{
+  margin-top: 1rem;
+  text-align: right;
+}
+
+.anchor{
+  font-size: 12px;
+}
+
+.anchor a{
+  font-size: 12px;
+  color: var(--minor-color);
+  text-decoration: none;
+}
+
+.anchor a:hover{
+  text-decoration: underline;
+}
+
+.input_error{
+  font-size: 12px;
+  color: #ff3939;
+}
+
+@media only screen and (max-width: 512px) {
+  .reg_header{
+    font-size: 16px;
+  }
+
+  .anchor , .anchor a{
+    font-size: 12px;
+  }
+
+  .input_wrapper{
+    margin: 1rem 0px;
+  }
+
+  label{
+    display: block;
+    font-size: 12px;
+    color: var(--minor-color);
+    margin: 0px 0px 0.5rem 1.5rem;
+  }
+}

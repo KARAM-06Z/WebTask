@@ -1,0 +1,22 @@
+<h3 class="reg_header">Sign in</h3>
+
+<form (submit)= "submitUser()">
+  <div class="input_wrapper">
+    <label for="email_input">Email adress</label>
+    <input type="email" name="email" class="reg_input" id="email_input" [(ngModel)]= "email">
+    <span class="input_error" *ngIf="email_error">{{ email_error_text }}</span>
+  </div>
+
+  <div class="input_wrapper">
+    <label for="password_input">Password</label>
+    <input type="password" name="password" class="reg_input" id="password_input" [(ngModel)]= "password">
+    <span class="input_error" *ngIf="password_error">{{ password_error_text }}</span>
+  </div>
+
+  <button type="submit" class="reg_submit">Proceed</button>
+</form>
+
+<div class="reg_anchors_wrapper">
+  <span class="anchor"><a href="">Forgot password?</a></span>
+  <span href="" class="anchor">New user? <a href="http://localhost:4200/signup">Register</a></span>
+</div>
